@@ -1,0 +1,47 @@
+html,
+body {
+	height: 100vh;
+	width: 100vw;
+	background-color: $mainBackground;
+	color: $mainGold;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 400;
+	font-size: 14px;
+}
+
+@font-face {
+	font-family: Alexandra_Script;
+	src: url(../../../assets/fonts/Alexandra_Script.ttf);
+}
+
+img {
+	/* Remove the border on images inside links in IE 10-.*/
+	border-style: none;
+	max-width: 100%;
+}
+
+a {
+	/**
+ * 1. Remove the gray background on active links in IE 10.
+ * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.
+ */
+	background-color: transparent; /* 1 */
+	-webkit-text-decoration-skip: objects; /* 2 */
+	color: $lightGold;
+}
+
+a:hover {
+	text-decoration: none;
+	color: $mainGold;
+}
+
+.wrapper {
+	min-height: 95%;
+	height: auto;
+	width: 92%;
+	margin: auto;
+
+	@mixin tablet {
+		width: 72%;
+	}
+}

@@ -1,0 +1,54 @@
+.container{
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    animation: 3s ease-out 5s slideIn;
+    animation-fill-mode: forwards;
+    &--static{
+      animation: none;
+    }
+    &__col-3--first{
+      order: 2;
+    }
+    &__col-3--second{
+      order: 1;
+      margin: 20px 20px 30px 20px;
+    }
+    &__col-3--third{
+      order: 3;
+    }
+    @mixin laptop{
+      flex-direction: row;
+      position: static;
+      animation: none;
+      padding-top: 0;
+      
+      &__col-3--first{
+        order: 1;
+      }
+      &__col-3--second{
+        order: 2;
+      }
+      &__col-3--third{
+        order: 3;
+      }
+      &__col-3{
+        width: 33%;
+      }
+
+      &__col-4{
+        width: 25%;
+      }
+    }
+
+  }
+
+  @keyframes slideIn{
+    0%{
+      transform: translateY(0);      
+    }
+    100%{
+      transform: translateY(-250px);
+    }
+  }

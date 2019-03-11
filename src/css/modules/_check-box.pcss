@@ -1,0 +1,40 @@
+.check-box {
+   	position: relative;
+	margin: .5em 1em;
+	font-size: 1.5em;
+	color: $mainGold;
+	font-family: Indie Flower;
+	&__label {
+        z-index: 2;
+		display: block;
+		padding: .25em .5em .25em 2em;
+		position: relative;
+		cursor: pointer;
+	}
+	&__input {
+		opacity: 0;
+		position: absolute;
+		left: .75em;
+		top: .75em;
+        cursor: default;
+		&:checked ~ .check-box-svg {
+			border-color: $lightGold;
+		}
+		&:checked ~ .check-box-svg path {
+			stroke-dashoffset: 0;
+			stroke: $lightGold;
+		}
+	}
+}
+.check-box-svg {
+    z-index: 1;
+	width: 1em;
+	height: 1em;
+	position: absolute;
+	left: 0.5em;
+	top: .3em;
+	border: 2px solid $mainGold;
+	&__path {
+		transition: stroke-dashoffset .4s linear;
+	}
+}

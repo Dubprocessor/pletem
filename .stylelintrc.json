@@ -1,0 +1,13 @@
+{
+	"extends": "stylelint-config-recommended",
+	"plugins": [ "stylelint-selector-bem-pattern" ],
+	"rules": {
+		"declaration-block-semicolon-space-before": "never",
+		"plugin/selector-bem-pattern": {
+			"componentName": "^[a-z]+(?:[-][a-z0-9]+)?$",
+			"componentSelectors": "^\\.{componentName}((?:[-_]+[a-z0-9-]+)?)+$",
+			"ignoreSelectors": [ "^0%$", "^100%$" ]
+		}
+	}
+}
+ 

@@ -1,0 +1,86 @@
+{
+	"name": "pletem",
+	"version": "0.0.0",
+	"private": true,
+	"dependencies": {
+		"normalize.css": "^7.0.0"
+	},
+	"browserslist": [
+		"last 2 version",
+		"> 1%",
+		"IE 10"
+	],
+	"babel": {
+		"presets": [
+			[
+				"@babel/preset-env",
+				{
+					"useBuiltIns": "usage"
+				}
+			]
+		],
+		"include": [
+			"./gulp/**/*",
+			"./gulpfile.babel.js"
+		]
+	},
+	"scripts": {
+		"start": "gulp",
+		"htmllint": "gulp htmllint",
+		"stylelint": "gulp stylelint",
+		"postcss": "gulp postcss",
+		"minify-css": "gulp minify-css",
+		"ts": "gulp ts",
+		"minify-js": "gulp minify-js",
+		"tsx": "gulp tsx",
+		"concat": "gulp concat",
+		"clean": "gulp clean"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.2.2",
+		"@babel/plugin-syntax-jsx": "^7.2.0",
+		"@babel/preset-env": "^7.3.1",
+		"@babel/preset-react": "^7.0.0",
+		"@babel/preset-typescript": "^7.1.0",
+		"@babel/register": "^7.0.0",
+		"@types/googlemaps": "^3.30.16",
+		"@types/jest": "^24.0.0",
+		"@types/react": "^16.8.1",
+		"@types/react-dom": "^16.0.11",
+		"autoprefixer": "^7.1.6",
+		"browser-sync": "^2.26.3",
+		"clear-module": "^3.1.0",
+		"glob": "^7.1.3",
+		"gulp": "^4.0.0",
+		"gulp-clean": "^0.4.0",
+		"gulp-clean-css": "^4.0.0",
+		"gulp-concat": "^2.6.1",
+		"gulp-html-conformance": "2.0.0",
+		"gulp-postcss": "^7.0.0",
+		"gulp-sourcemaps": "^2.6.4",
+		"gulp-stylelint": "^8.0.0",
+		"gulp-typescript": "^5.0.0",
+		"husky": "^1.3.1",
+		"jest": "^24.1.0",
+		"parcel-bundler": "^1.11.0",
+		"postcss": "^7.0.14",
+		"postcss-import": "^11.0.0",
+		"postcss-mixins": "^6.2.0",
+		"postcss-nested": "^2.1.2",
+		"postcss-reporter": "^6.0.1",
+		"postcss-simple-vars": "^4.1.0",
+		"postcss-syntax": "^0.36.2",
+		"react": "^16.7.0",
+		"react-dom": "^16.7.0",
+		"react-test-renderer": "^16.8.0",
+		"react-testing-library": "^5.4.4",
+		"stylelint": "^9.10.1",
+		"stylelint-config-recommended": "^2.1.0",
+		"stylelint-selector-bem-pattern": "^2.0.0",
+		"tslint": "^5.12.1",
+		"tslint-config-airbnb": "^5.11.1",
+		"tslint-config-prettier": "^1.18.0",
+		"tslint-react": "^3.6.0",
+		"typescript": "^3.3.1"
+	}
+}
