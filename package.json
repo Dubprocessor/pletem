@@ -34,7 +34,8 @@
 		"minify-js": "gulp minify-js",
 		"tsx": "gulp tsx",
 		"concat": "gulp concat",
-		"clean": "gulp clean"
+		"clean": "gulp clean",
+		"deploy": "bash ./gh-pages.sh"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.2.2",
