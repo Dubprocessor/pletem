@@ -77,6 +77,14 @@ pre {
 /* Text-level semantics
    ========================================================================== */
 /**
+ * 1. Remove the gray background on active links in IE 10.
+ * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.
+ */
+a {
+  background-color: transparent; /* 1 */
+  -webkit-text-decoration-skip: objects; /* 2 */
+}
+/**
  * 1. Remove the bottom border in Chrome 57- and Firefox 39-.
  * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
  */
@@ -161,6 +169,12 @@ video {
 audio:not([controls]) {
   display: none;
   height: 0;
+}
+/**
+ * Remove the border on images inside links in IE 10-.
+ */
+img {
+  border-style: none;
 }
 /**
  * Hide the overflow in IE.
@@ -740,7 +754,6 @@ a:hover {
 .accordion{
     width: 100%;
     margin: auto;
-    font-family: 'Poiret One', cursive;
     text-align: left;
 }
 .accordion__input{
@@ -748,6 +761,7 @@ a:hover {
     }
 .accordion__input:checked + label,
         .accordion__input:checked + label:hover{
+            color: black;
             background: #ffc040;
             cursor: default;
         }
@@ -775,27 +789,25 @@ a:hover {
         z-index: 4;
         padding: 1rem 1rem;
         display: block;
-        height: auto;
         cursor: pointer;
-        color: black;
+        color: #e4ae58;
         line-height: 1rem;
-        font-size: 1.2rem;
+        font-size: 1rem;
         font-weight: 400;
-        background: rgba(255, 255, 255, 0.3 );
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.1%, rgba(255, 255, 255, 0.3 )), color-stop(10%, #e4ae58));
-        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3 ) 0.1%, #e4ae58 10%);
-        -webkit-box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3), 1px 0px 0px 0px rgba(255,255,255,0.3) inset, 0px 2px 2px rgba(0,0,0,0.1);
-                box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3), 1px 0px 0px 0px rgba(255,255,255,0.3) inset, 0px 2px 2px rgba(0,0,0,0.1);
+        background: rgba(255, 255, 255, 0.2 );
+        border-top: 1px solid #ffc040;
     }
 .accordion__label:hover{
+            color: black;
             background: #ffc040;
             
         }
 .accordion__label:hover:after{
                 font-family: "FontAwesome", sans-serif;
+                font-size: 1.2rem;
                 position: absolute;
                 right: 15px;
-                top: 20px;
+                top: 15px;
                 content: '\f07d';
                
             }
