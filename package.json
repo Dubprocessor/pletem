@@ -5,11 +5,7 @@
 	"dependencies": {
 		"normalize.css": "^7.0.0"
 	},
-	"browserslist": [
-		"last 2 version",
-		"> 1%",
-		"IE 10"
-	],
+	"browserslist": [ "last 2 version", "> 1%", "IE 10" ],
 	"babel": {
 		"presets": [
 			[
@@ -19,10 +15,7 @@
 				}
 			]
 		],
-		"include": [
-			"./gulp/**/*",
-			"./gulpfile.babel.js"
-		]
+		"include": [ "./gulp/**/*", "./gulpfile.babel.js" ]
 	},
 	"scripts": {
 		"start": "gulp",

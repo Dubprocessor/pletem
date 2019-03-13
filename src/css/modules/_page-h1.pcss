@@ -1,35 +1,38 @@
-.page-h1{
-    font-family: 'Alexandra_Script', sans-serif;
-    font-size: 5rem;
-    font-weight: normal;
-    color: $mainGold;
-    width: auto;
-    padding-top: 8%;
-    margin-bottom: 0;
-    position: relative;
-    z-index: 5;
-    @mixin tablet{
-        font-size: 8rem;
-        margin: 0;
-        padding-top: 6%;
-       
-    }
+.page-h1 {
+	font-family: 'Alexandra_Script', sans-serif;
+	font-size: 5rem;
+	font-weight: normal;
+	color: $mainGold;
+	width: auto;
+	padding-top: 15%;
+	margin: 0;
+	position: relative;
+	z-index: 5;
+	@mixin tablet {
+		font-size: 8rem;
+	}
+	@mixin laptop {
+		padding-top: 12%;
+	}
+	@mixin desktop {
+		padding-top: 6%;
+	}
 
-    &_large{
-        font-size: 5rem;
-        text-align: center;
-        padding:0;
+	&_large {
+		font-size: 5rem;
+		text-align: center;
+		padding: 0;
 
-        @mixin tablet{
-            font-size: 12rem;
-        }
-    }
+		@mixin tablet {
+			font-size: 12rem;
+		}
+	}
 
-    &_small{
-        font-size: 4rem;
+	&_small {
+		font-size: 4rem;
 
-        @mixin tablet{
-            font-size: 7rem;
-        }
-    }
+		@mixin tablet {
+			font-size: 7rem;
+		}
+	}
 }
