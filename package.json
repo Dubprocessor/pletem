@@ -35,6 +35,7 @@
 		"tsx": "gulp tsx",
 		"concat": "gulp concat",
 		"clean": "gulp clean",
+		"lint": "tslint --fix 'src/**/*.{ts,tsx}' && prettier --write 'src/**/*.{ts,tsx}'",
 		"deploy": "bash ./gh-pages.sh"
 	},
 	"devDependencies": {
