@@ -1,11 +1,20 @@
 .contacts {
 	display: flex;
-	justify-content: space-between;
+	flex-direction: column;
 	&__map {
-		width: 50%;
+		width: 95%;
 		height: 350px;
 		margin-top: 0;
+		margin-bottom: 10px;
 		padding: 0;
 	}
-  
+	@mixin laptop {
+		flex-direction: row;
+		justify-content: space-between;
+
+		&__map {
+			width: 50%;
+			margin-bottom: 0;
+		}
+	}
 }

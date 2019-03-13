@@ -1,10 +1,13 @@
 .email-form {
-	width: 45%;
+	width: 90%;
 	background: rgba(255, 255, 255, 0.03);
 	box-shadow: 1px 1px 6px 4px rgba(255, 255, 255, 0.5) inset;
 	border: solid 1px $lightGold;
 	padding: 15px;
 	margin: 0;
+	@mixin laptop {
+		width: 45%;
+	}
 
 	&__fieldset {
 		border: none;

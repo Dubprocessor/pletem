@@ -3,7 +3,6 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { Layout } from '../../components/layout';
 import { PageH1 } from '../../components/pageH1';
 import { EmailForm } from '../../components/emailForm';
-import * as fs from 'fs';
 
 export default function Contacts() {
 	return renderToStaticMarkup(
@@ -20,4 +19,3 @@ export default function Contacts() {
 		</Layout>
 	);
 }
-
