@@ -47,7 +47,7 @@ export default function Prices() {
                 />
                 <CheckBox label="Афрокосички зизи" id="kind-3" name="kind" value="6000" />
               </fieldset>
-              <input className="calc__submit" type="submit" value="Расcчитать стоимость" />
+              <input className="calc__submit" type="submit" value="Показать стоимость" />
             </form>
           </div>
         </div>

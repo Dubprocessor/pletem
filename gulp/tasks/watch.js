@@ -1,10 +1,11 @@
-import { task, src, dest, watch, series } from 'gulp';
 import { resolve } from 'path';
+
+import { task, src, dest, watch, series } from 'gulp';
+import decache from "decache";
 import { createProject } from 'gulp-typescript';
 import { writeFile, stat } from 'fs';
 import { makeDir } from '../helpers/makeDir';
 import { formatFileSize } from '../helpers/formatFileSize';
-const clearModule = require('clear-module');
 
 task('watch-css', function() {
 	watch([ './src/css/**/*.css', './src/css/**/*.pcss' ], series('postcss', 'minify-css'));
@@ -22,8 +23,8 @@ task('watch-compiled-js', function() {
 				console.info(`[Starting generate HTML for]: ${consumer}`);
 				const dirPath = makeDir(consumer);
 				
-				delete require.cache[`${resolve(file)}`];
-				delete require.cache[`${resolve(consumer)}`];
+				decache(`${resolve(file)}`);
+				decache(`${resolve(consumer)}`);
 
 				const pageMarkup = require(resolve(consumer)).default();
 
@@ -39,7 +40,7 @@ task('watch-compiled-js', function() {
 				);
 			});
 		} else {
-			delete require.cache[`${resolve(file)}`];
+			decache(`${resolve(file)}`);
 			console.info(`[Starting generate HTML for]: ${file}`);
 			const dirPath = makeDir(file);
 			const pageMarkup = require(resolve(file)).default();
