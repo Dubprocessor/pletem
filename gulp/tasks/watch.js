@@ -19,10 +19,11 @@ task('watch-compiled-js', function() {
 			console.log(`[Changed component]: ${file}`);
 			const consumers = require(resolve(file)).consumers;
 			consumers.forEach((consumer) => {
-				delete require.cache[`${resolve(file)}`];
-				delete require.cache[`${resolve(consumer)}`];
 				console.info(`[Starting generate HTML for]: ${consumer}`);
 				const dirPath = makeDir(consumer);
+				
+				delete require.cache[`${resolve(file)}`];
+				delete require.cache[`${resolve(consumer)}`];
 
 				const pageMarkup = require(resolve(consumer)).default();
 

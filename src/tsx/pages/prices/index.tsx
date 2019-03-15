@@ -1,9 +1,13 @@
 import * as React from "react";
+import decache from "decache";
+
 import { renderToStaticMarkup } from "react-dom/server";
 import { Layout } from "../../components/layout";
 import { PageH1 } from "../../components/pageH1";
 import { CheckBox } from "../../components/checkBox";
+
 import { siteData } from "../../../ts/siteData";
+decache("../../../ts/siteData");
 
 export default function Prices() {
   const tabs = Object.entries(siteData.prices.tabs).map((element, index) => {

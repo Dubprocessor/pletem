@@ -7,11 +7,11 @@ const tsProject = createProject('tsconfig.json');
 task('ts', function() {
 	return src('./src/ts/**/*.ts', { since: lastRun('ts') })
 		.pipe(tsProject())
-		.js.pipe(dest('./src/compiled'));
+		.js.pipe(dest('./src/compiled/ts'));
 });
  
 task('concat', function() {
-	return src('./src/compiled/ts/modules/**/*.js')
+	return src(['./src/compiled/ts/**/*.js', '!./src/compiled/ts/siteData.js'])
 		.pipe(concat('bundle.js'))
 		.pipe(dest('./public/dist/scripts/minified'));
 });

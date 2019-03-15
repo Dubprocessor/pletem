@@ -6,17 +6,17 @@ function validEmail(email) {
 function validateHuman(honeypot) {
     if (honeypot) {
         // if hidden form filled up
-        console.log('Robot Detected!');
+        console.log("Robot Detected!");
         return true;
     }
-    console.log('Welcome Human!');
+    console.log("Welcome Human!");
 }
 // get all data in form and return object
 function getFormData(form) {
     var elements = form.elements;
     var fields = Object.keys(elements)
         .filter(function (k) {
-        return elements[k].name !== 'honeypot';
+        return elements[k].name !== "honeypot";
     })
         .map(function (k) {
         if (elements[k].name !== undefined) {
@@ -44,13 +44,13 @@ function getFormData(form) {
                     data.push(item.value);
                 }
             }
-            formData[name] = data.join(', ');
+            formData[name] = data.join(", ");
         }
     });
     // add form-specific values into the data
     formData.formDataNameOrder = JSON.stringify(fields);
-    formData.formGoogleSheetName = form.dataset.sheet || 'responses'; // default sheet name
-    formData.formGoogleSendEmail = form.dataset.email || ''; // no email by default
+    formData.formGoogleSheetName = form.dataset.sheet || "responses"; // default sheet name
+    formData.formGoogleSendEmail = form.dataset.email || ""; // no email by default
     console.log(formData);
     return formData;
 }
@@ -64,9 +64,9 @@ function handleFormSubmit(event) {
     }
     if (data.email && !validEmail(data.email)) {
         // if email is not valid show error
-        var invalidEmail = form.querySelector('.email-invalid');
+        var invalidEmail = form.querySelector(".email-invalid");
         if (invalidEmail) {
-            invalidEmail.style.display = 'block';
+            invalidEmail.style.display = "block";
             return false;
         }
     }
@@ -74,19 +74,19 @@ function handleFormSubmit(event) {
         disableAllButtons(form);
         var url = form.action;
         var xhr_1 = new XMLHttpRequest();
-        xhr_1.open('POST', url);
+        xhr_1.open("POST", url);
         // xhr.withCredentials = true;
-        xhr_1.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr_1.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr_1.onreadystatechange = function () {
             console.log(xhr_1.status, xhr_1.statusText);
             console.log(xhr_1.responseText);
-            var formElements = form.querySelector('.form-elements');
+            var formElements = form.querySelector(".form-elements");
             if (formElements) {
-                formElements.style.display = 'none'; // hide form
+                formElements.style.display = "none"; // hide form
             }
-            var thankYouMessage = form.querySelector('.thankyou_message');
+            var thankYouMessage = form.querySelector(".thankyou_message");
             if (thankYouMessage) {
-                thankYouMessage.style.display = 'block';
+                thankYouMessage.style.display = "block";
             }
             return;
         };
@@ -95,21 +95,21 @@ function handleFormSubmit(event) {
             .map(function (k) {
             return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
         })
-            .join('&');
+            .join("&");
         xhr_1.send(encoded);
     }
 }
 function loaded() {
-    console.log('Contact form submission handler loaded successfully.');
+    console.log("Contact form submission handler loaded successfully.");
     // bind to the submit event of our form
-    var forms = document.querySelectorAll('.email-form');
+    var forms = document.querySelectorAll(".email-form");
     for (var i = 0; i < forms.length; i++) {
-        forms[i].addEventListener('submit', handleFormSubmit, false);
+        forms[i].addEventListener("submit", handleFormSubmit, false);
     }
 }
-document.addEventListener('DOMContentLoaded', loaded, false);
+document.addEventListener("DOMContentLoaded", loaded, false);
 function disableAllButtons(form) {
-    var buttons = form.querySelectorAll('button');
+    var buttons = form.querySelectorAll("button");
     for (var i = 0; i < buttons.length; i++) {
         buttons[i].disabled = true;
     }

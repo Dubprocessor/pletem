@@ -3,7 +3,6 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { Layout } from "../../components/layout";
 import { PageH1 } from "../../components/pageH1";
 import { siteData } from "../../../ts/siteData";
-import * as fs from "fs";
 
 export default function Faq() {
   const accordion = Object.entries(siteData.faq.accordion).map((element, index) => {

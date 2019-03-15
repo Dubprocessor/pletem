@@ -1,8 +1,8 @@
 "use strict";
-var tabsClass = 'tabs';
-var tabClass = 'tab';
-var tabButtonClass = 'tab-button';
-var activeClass = 'active';
+var tabsClass = "tabs";
+var tabClass = "tab";
+var tabButtonClass = "tab-button";
+var activeClass = "active";
 /* Activates the chosen tab and deactivates the rest */
 function activateTab(chosenTabElement) {
     if (chosenTabElement.parentNode) {
@@ -31,7 +31,7 @@ for (var i = 0; i < tabbedContainers.length; i++) {
         var tabElement = tabList[i_1];
         var tabButton = tabElement.querySelector("." + tabButtonClass);
         if (tabButton) {
-            tabButton.addEventListener('click', function (event) {
+            tabButton.addEventListener("click", function (event) {
                 event.preventDefault();
                 var eTarget = event.target;
                 activateTab(eTarget.parentNode);

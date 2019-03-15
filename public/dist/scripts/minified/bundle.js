@@ -6,17 +6,17 @@ function validEmail(email) {
 function validateHuman(honeypot) {
     if (honeypot) {
         // if hidden form filled up
-        console.log('Robot Detected!');
+        console.log("Robot Detected!");
         return true;
     }
-    console.log('Welcome Human!');
+    console.log("Welcome Human!");
 }
 // get all data in form and return object
 function getFormData(form) {
     var elements = form.elements;
     var fields = Object.keys(elements)
         .filter(function (k) {
-        return elements[k].name !== 'honeypot';
+        return elements[k].name !== "honeypot";
     })
         .map(function (k) {
         if (elements[k].name !== undefined) {
@@ -44,13 +44,13 @@ function getFormData(form) {
                     data.push(item.value);
                 }
             }
-            formData[name] = data.join(', ');
+            formData[name] = data.join(", ");
         }
     });
     // add form-specific values into the data
     formData.formDataNameOrder = JSON.stringify(fields);
-    formData.formGoogleSheetName = form.dataset.sheet || 'responses'; // default sheet name
-    formData.formGoogleSendEmail = form.dataset.email || ''; // no email by default
+    formData.formGoogleSheetName = form.dataset.sheet || "responses"; // default sheet name
+    formData.formGoogleSendEmail = form.dataset.email || ""; // no email by default
     console.log(formData);
     return formData;
 }
@@ -64,9 +64,9 @@ function handleFormSubmit(event) {
     }
     if (data.email && !validEmail(data.email)) {
         // if email is not valid show error
-        var invalidEmail = form.querySelector('.email-invalid');
+        var invalidEmail = form.querySelector(".email-invalid");
         if (invalidEmail) {
-            invalidEmail.style.display = 'block';
+            invalidEmail.style.display = "block";
             return false;
         }
     }
@@ -74,19 +74,19 @@ function handleFormSubmit(event) {
         disableAllButtons(form);
         var url = form.action;
         var xhr_1 = new XMLHttpRequest();
-        xhr_1.open('POST', url);
+        xhr_1.open("POST", url);
         // xhr.withCredentials = true;
-        xhr_1.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr_1.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr_1.onreadystatechange = function () {
             console.log(xhr_1.status, xhr_1.statusText);
             console.log(xhr_1.responseText);
-            var formElements = form.querySelector('.form-elements');
+            var formElements = form.querySelector(".form-elements");
             if (formElements) {
-                formElements.style.display = 'none'; // hide form
+                formElements.style.display = "none"; // hide form
             }
-            var thankYouMessage = form.querySelector('.thankyou_message');
+            var thankYouMessage = form.querySelector(".thankyou_message");
             if (thankYouMessage) {
-                thankYouMessage.style.display = 'block';
+                thankYouMessage.style.display = "block";
             }
             return;
         };
@@ -95,21 +95,21 @@ function handleFormSubmit(event) {
             .map(function (k) {
             return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
         })
-            .join('&');
+            .join("&");
         xhr_1.send(encoded);
     }
 }
 function loaded() {
-    console.log('Contact form submission handler loaded successfully.');
+    console.log("Contact form submission handler loaded successfully.");
     // bind to the submit event of our form
-    var forms = document.querySelectorAll('.email-form');
+    var forms = document.querySelectorAll(".email-form");
     for (var i = 0; i < forms.length; i++) {
-        forms[i].addEventListener('submit', handleFormSubmit, false);
+        forms[i].addEventListener("submit", handleFormSubmit, false);
     }
 }
-document.addEventListener('DOMContentLoaded', loaded, false);
+document.addEventListener("DOMContentLoaded", loaded, false);
 function disableAllButtons(form) {
-    var buttons = form.querySelectorAll('button');
+    var buttons = form.querySelectorAll("button");
     for (var i = 0; i < buttons.length; i++) {
         buttons[i].disabled = true;
     }
@@ -131,42 +131,42 @@ function disableAllButtons(form) {
     function init() {
         W = window.innerWidth;
         H = window.innerHeight;
-        underlay = document.createElement('div');
-        underlay.setAttribute('style', 'position: fixed; left:0; top: 0; width:100vw; height: 100vh; transition: opacity 0.25s ease 200ms; opacity: 0; pointer-events:none; background: rgba(0,0,0,0.7);');
+        underlay = document.createElement("div");
+        underlay.setAttribute("style", "position: fixed; left:0; top: 0; width:100vw; height: 100vh; transition: opacity 0.25s ease 200ms; opacity: 0; pointer-events:none; background: rgba(0,0,0,0.7);");
         document.body.appendChild(underlay);
-        img = document.createElement('img');
-        img.setAttribute('style', 'max-width: 100vw; position: fixed; z-index: 2; transform: translate(0%, 0%); transition: transform 0.3s ease 200ms, opacity 0.4s ease 200ms; opacity: 0;pointer-events:none;');
+        img = document.createElement("img");
+        img.setAttribute("style", "max-width: 100vw; position: fixed; z-index: 2; transform: translate(0%, 0%); transition: transform 0.3s ease 200ms, opacity 0.4s ease 200ms; opacity: 0;pointer-events:none;");
         document.body.appendChild(img);
         try {
             // Detect touch screen. Otherwise will throw err.
-            document.createEvent('TouchEvent');
-            img.style.transform = 'translate(-50%, -50%)';
-            img.style.left = '50%';
-            img.style.top = '50%';
+            document.createEvent("TouchEvent");
+            img.style.transform = "translate(-50%, -50%)";
+            img.style.left = "50%";
+            img.style.top = "50%";
             img.style.maxWidth = W + "px";
-            document.addEventListener('touchstart', onMouseOver);
+            document.addEventListener("touchstart", onMouseOver);
             isTouch = true;
         }
         catch (e) {
-            document.addEventListener('mouseover', onMouseOver);
+            document.addEventListener("mouseover", onMouseOver);
         }
     }
-    if (window.location.pathname.includes('gallery')) {
+    if (window.location.pathname.includes("gallery")) {
         init();
     }
     function onTouchMove() {
         hasMoved = true;
     }
     function onTouchEnd(e) {
-        document.removeEventListener('touchmove', onTouchMove);
-        document.removeEventListener('touchend', onTouchEnd);
+        document.removeEventListener("touchmove", onTouchMove);
+        document.removeEventListener("touchend", onTouchEnd);
         // If it wasn't a swipe, open/close image
         if (!hasMoved) {
             if (isOpen) {
                 isOpen = false;
                 reset();
             }
-            else if (e.target.tagName === 'IMG') {
+            else if (e.target.tagName === "IMG") {
                 openImage(e.target);
             }
         }
@@ -181,8 +181,8 @@ function disableAllButtons(form) {
         var areas = {
             top: aspectRatio * bound.top * bound.top,
             bottom: aspectRatio * (H - bound.bottom) * (H - bound.bottom),
-            left: bound.left / aspectRatio * bound.left,
-            right: (W - bound.right) / aspectRatio * (W - bound.right)
+            left: (bound.left / aspectRatio) * bound.left,
+            right: ((W - bound.right) / aspectRatio) * (W - bound.right),
         };
         var maxArea = 0;
         var maxSide;
@@ -197,40 +197,40 @@ function disableAllButtons(form) {
     function openImage(target) {
         el = target;
         img.src = el.src;
-        img.style.opacity = '1';
-        underlay.style.opacity = '1';
+        img.style.opacity = "1";
+        underlay.style.opacity = "1";
         if (isTouch) {
-            img.style.transform = 'translate(-50%, -50%) scale(1)';
+            img.style.transform = "translate(-50%, -50%) scale(1)";
         }
         else {
-            img.style.top = '0px';
-            img.style.transform = 'translate(0%, 0%) scale(1)';
+            img.style.top = "0px";
+            img.style.transform = "translate(0%, 0%) scale(1)";
             bound = el.getBoundingClientRect();
             var side = getSideWithMaxArea();
-            if (side === 'top') {
+            if (side === "top") {
                 img.style.maxHeight = bound.top + "px";
-                img.style.maxWidth = 'none';
-                img.style.left = '0';
-                img.style.top = '0';
+                img.style.maxWidth = "none";
+                img.style.left = "0";
+                img.style.top = "0";
             }
-            else if (side === 'bottom') {
+            else if (side === "bottom") {
                 img.style.maxHeight = H - bound.bottom + "px";
-                img.style.maxWidth = 'none';
-                img.style.left = '0';
+                img.style.maxWidth = "none";
+                img.style.left = "0";
                 img.style.top = "" + bound.bottompx;
             }
-            else if (side === 'right') {
+            else if (side === "right") {
                 img.style.maxWidth = W - bound.right + "px";
-                img.style.maxHeight = 'none';
+                img.style.maxHeight = "none";
                 img.style.left = bound.right + "px";
             }
             else {
                 img.style.maxWidth = bound.left + "px";
-                img.style.maxHeight = 'none';
-                img.style.left = '0';
+                img.style.maxHeight = "none";
+                img.style.left = "0";
             }
-            document.addEventListener('mousemove', onMove);
-            document.addEventListener('mouseout', onMouseOut);
+            document.addEventListener("mousemove", onMove);
+            document.addEventListener("mouseout", onMouseOut);
         }
         isOpen = true;
     }
@@ -238,10 +238,10 @@ function disableAllButtons(form) {
         el = e.target;
         if (isTouch) {
             hasMoved = false;
-            document.addEventListener('touchmove', onTouchMove);
-            document.addEventListener('touchend', onTouchEnd);
+            document.addEventListener("touchmove", onTouchMove);
+            document.addEventListener("touchend", onTouchEnd);
         }
-        else if (el.tagName === 'IMG') {
+        else if (el.tagName === "IMG") {
             openImage(el);
         }
     }
@@ -281,36 +281,42 @@ function disableAllButtons(form) {
         var top;
         if (img.height > H) {
             top = bound.top - mouse.y;
-            img.style.top = "calc(" + 1 * top / bound.height * (img.height - H) + "px)";
+            img.style.top = "calc(" + ((1 * top) / bound.height) * (img.height - H) + "px)";
         }
         if (isOutside &&
-            (mouse.x > bound.right || mouse.x < bound.left || mouse.y > bound.bottom || mouse.y < bound.top)) {
+            (mouse.x > bound.right ||
+                mouse.x < bound.left ||
+                mouse.y > bound.bottom ||
+                mouse.y < bound.top)) {
             reset();
         }
     }
     function reset() {
-        img.style.opacity = underlay.style.opacity = '0';
+        img.style.opacity = underlay.style.opacity = "0";
         el = null;
         bound = null;
         isOutside = false;
-        document.removeEventListener('mousemove', onMove);
-        document.removeEventListener('mouseout', onMouseOut);
+        document.removeEventListener("mousemove", onMove);
+        document.removeEventListener("mouseout", onMouseOut);
         if (isTouch) {
-            img.style.transform = 'translate(-50%, -50%) scale(1)';
+            img.style.transform = "translate(-50%, -50%) scale(1)";
         }
         else {
-            img.style.transform = 'translate(0%, 0%) scale(0.9)';
+            img.style.transform = "translate(0%, 0%) scale(0.9)";
         }
     }
     function onMouseOut(e) {
         var mouse = getMouse(e);
-        if (!(mouse.x > bound.right || mouse.x < bound.left || mouse.y > bound.bottom || mouse.y < bound.top)) {
+        if (!(mouse.x > bound.right ||
+            mouse.x < bound.left ||
+            mouse.y > bound.bottom ||
+            mouse.y < bound.top)) {
             isOutside = true;
             return;
         }
         reset();
     }
-    window.addEventListener('resize', function () {
+    window.addEventListener("resize", function () {
         W = window.innerWidth;
         H = window.innerHeight;
     });
@@ -319,111 +325,111 @@ function disableAllButtons(form) {
 "use strict";
 function initMap() {
     // Styles a map in night mode.
-    console.log('initMap was called!');
-    var map = new google.maps.Map(document.getElementById('map'), {
+    console.log("initMap was called!");
+    var map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: 59.990335, lng: 30.255272 },
         zoom: 15,
         styles: [
-            { elementType: 'geometry', stylers: [{ color: '#150509' }] },
-            { elementType: 'labels.text.stroke', stylers: [{ color: '#242f3e' }] },
-            { elementType: 'labels.text.fill', stylers: [{ color: '#746855' }] },
+            { elementType: "geometry", stylers: [{ color: "#150509" }] },
+            { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
+            { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
             {
-                featureType: 'administrative.locality',
-                elementType: 'labels.text.fill',
-                stylers: [{ color: '#d59563' }]
+                featureType: "administrative.locality",
+                elementType: "labels.text.fill",
+                stylers: [{ color: "#d59563" }],
             },
             {
-                featureType: 'poi',
-                elementType: 'labels.text.fill',
-                stylers: [{ color: '#d59563' }]
+                featureType: "poi",
+                elementType: "labels.text.fill",
+                stylers: [{ color: "#d59563" }],
             },
             {
-                featureType: 'poi.park',
-                elementType: 'geometry',
-                stylers: [{ color: '#263c3f' }]
+                featureType: "poi.park",
+                elementType: "geometry",
+                stylers: [{ color: "#263c3f" }],
             },
             {
-                featureType: 'poi.park',
-                elementType: 'labels.text.fill',
-                stylers: [{ color: '#6b9a76' }]
+                featureType: "poi.park",
+                elementType: "labels.text.fill",
+                stylers: [{ color: "#6b9a76" }],
             },
             {
-                featureType: 'road',
-                elementType: 'geometry',
-                stylers: [{ color: '#38414e' }]
+                featureType: "road",
+                elementType: "geometry",
+                stylers: [{ color: "#38414e" }],
             },
             {
-                featureType: 'road',
-                elementType: 'geometry.stroke',
-                stylers: [{ color: '#212a37' }]
+                featureType: "road",
+                elementType: "geometry.stroke",
+                stylers: [{ color: "#212a37" }],
             },
             {
-                featureType: 'road',
-                elementType: 'labels.text.fill',
-                stylers: [{ color: '#9ca5b3' }]
+                featureType: "road",
+                elementType: "labels.text.fill",
+                stylers: [{ color: "#9ca5b3" }],
             },
             {
-                featureType: 'road.highway',
-                elementType: 'geometry',
-                stylers: [{ color: '#746855' }]
+                featureType: "road.highway",
+                elementType: "geometry",
+                stylers: [{ color: "#746855" }],
             },
             {
-                featureType: 'road.highway',
-                elementType: 'geometry.stroke',
-                stylers: [{ color: '#1f2835' }]
+                featureType: "road.highway",
+                elementType: "geometry.stroke",
+                stylers: [{ color: "#1f2835" }],
             },
             {
-                featureType: 'road.highway',
-                elementType: 'labels.text.fill',
-                stylers: [{ color: '#f3d19c' }]
+                featureType: "road.highway",
+                elementType: "labels.text.fill",
+                stylers: [{ color: "#f3d19c" }],
             },
             {
-                featureType: 'transit',
-                elementType: 'geometry',
-                stylers: [{ color: '#2f3948' }]
+                featureType: "transit",
+                elementType: "geometry",
+                stylers: [{ color: "#2f3948" }],
             },
             {
-                featureType: 'transit.station',
-                elementType: 'labels.text.fill',
-                stylers: [{ color: '#d59563' }]
+                featureType: "transit.station",
+                elementType: "labels.text.fill",
+                stylers: [{ color: "#d59563" }],
             },
             {
-                featureType: 'water',
-                elementType: 'geometry',
-                stylers: [{ color: '#17263c' }]
+                featureType: "water",
+                elementType: "geometry",
+                stylers: [{ color: "#17263c" }],
             },
             {
-                featureType: 'water',
-                elementType: 'labels.text.fill',
-                stylers: [{ color: '#515c6d' }]
+                featureType: "water",
+                elementType: "labels.text.fill",
+                stylers: [{ color: "#515c6d" }],
             },
             {
-                featureType: 'water',
-                elementType: 'labels.text.stroke',
-                stylers: [{ color: '#17263c' }]
-            }
-        ]
+                featureType: "water",
+                elementType: "labels.text.stroke",
+                stylers: [{ color: "#17263c" }],
+            },
+        ],
     });
 }
 
 "use strict";
-var menuButton = document.getElementById('menuButton');
-var menu = document.getElementById('menu');
+var menuButton = document.getElementById("menuButton");
+var menu = document.getElementById("menu");
 if (menuButton) {
-    menuButton.addEventListener('click', displayMenu);
+    menuButton.addEventListener("click", displayMenu);
 }
 function displayMenu() {
     if (menu) {
-        menu.classList.toggle('header__nav--visible');
+        menu.classList.toggle("header__nav--visible");
     }
 }
 var l = 1;
 
 "use strict";
-var tabsClass = 'tabs';
-var tabClass = 'tab';
-var tabButtonClass = 'tab-button';
-var activeClass = 'active';
+var tabsClass = "tabs";
+var tabClass = "tab";
+var tabButtonClass = "tab-button";
+var activeClass = "active";
 /* Activates the chosen tab and deactivates the rest */
 function activateTab(chosenTabElement) {
     if (chosenTabElement.parentNode) {
@@ -452,7 +458,7 @@ for (var i = 0; i < tabbedContainers.length; i++) {
         var tabElement = tabList[i_1];
         var tabButton = tabElement.querySelector("." + tabButtonClass);
         if (tabButton) {
-            tabButton.addEventListener('click', function (event) {
+            tabButton.addEventListener("click", function (event) {
                 event.preventDefault();
                 var eTarget = event.target;
                 activateTab(eTarget.parentNode);

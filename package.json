@@ -5,7 +5,11 @@
 	"dependencies": {
 		"normalize.css": "^7.0.0"
 	},
-	"browserslist": [ "last 2 version", "> 1%", "IE 10" ],
+	"browserslist": [
+		"last 2 version",
+		"> 1%",
+		"IE 10"
+	],
 	"babel": {
 		"presets": [
 			[
@@ -15,7 +19,10 @@
 				}
 			]
 		],
-		"include": [ "./gulp/**/*", "./gulpfile.babel.js" ]
+		"include": [
+			"./gulp/**/*",
+			"./gulpfile.babel.js"
+		]
 	},
 	"scripts": {
 		"start": "gulp",
@@ -45,6 +52,7 @@
 		"autoprefixer": "^7.1.6",
 		"browser-sync": "^2.26.3",
 		"clear-module": "^3.1.0",
+		"decache": "4.5.1",
 		"glob": "^7.1.3",
 		"gulp": "^4.0.0",
 		"gulp-clean": "^0.4.0",

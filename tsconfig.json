@@ -9,7 +9,7 @@
       "experimentalDecorators": true,
       "lib": ["dom", "es2015", "es2016", "es2017"]
     },
-    "include": ["./src/tsx/**/*.tsx", "./src/ts/**/*.ts"]
+    "include": ["./src/tsx/**/*.tsx", "./src/ts/**/*.ts", "src/ts/siteData.ts"]
    
   }
   

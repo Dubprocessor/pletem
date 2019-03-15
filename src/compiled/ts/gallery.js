@@ -14,42 +14,42 @@
     function init() {
         W = window.innerWidth;
         H = window.innerHeight;
-        underlay = document.createElement('div');
-        underlay.setAttribute('style', 'position: fixed; left:0; top: 0; width:100vw; height: 100vh; transition: opacity 0.25s ease 200ms; opacity: 0; pointer-events:none; background: rgba(0,0,0,0.7);');
+        underlay = document.createElement("div");
+        underlay.setAttribute("style", "position: fixed; left:0; top: 0; width:100vw; height: 100vh; transition: opacity 0.25s ease 200ms; opacity: 0; pointer-events:none; background: rgba(0,0,0,0.7);");
         document.body.appendChild(underlay);
-        img = document.createElement('img');
-        img.setAttribute('style', 'max-width: 100vw; position: fixed; z-index: 2; transform: translate(0%, 0%); transition: transform 0.3s ease 200ms, opacity 0.4s ease 200ms; opacity: 0;pointer-events:none;');
+        img = document.createElement("img");
+        img.setAttribute("style", "max-width: 100vw; position: fixed; z-index: 2; transform: translate(0%, 0%); transition: transform 0.3s ease 200ms, opacity 0.4s ease 200ms; opacity: 0;pointer-events:none;");
         document.body.appendChild(img);
         try {
             // Detect touch screen. Otherwise will throw err.
-            document.createEvent('TouchEvent');
-            img.style.transform = 'translate(-50%, -50%)';
-            img.style.left = '50%';
-            img.style.top = '50%';
+            document.createEvent("TouchEvent");
+            img.style.transform = "translate(-50%, -50%)";
+            img.style.left = "50%";
+            img.style.top = "50%";
             img.style.maxWidth = W + "px";
-            document.addEventListener('touchstart', onMouseOver);
+            document.addEventListener("touchstart", onMouseOver);
             isTouch = true;
         }
         catch (e) {
-            document.addEventListener('mouseover', onMouseOver);
+            document.addEventListener("mouseover", onMouseOver);
         }
     }
-    if (window.location.pathname.includes('gallery')) {
+    if (window.location.pathname.includes("gallery")) {
         init();
     }
     function onTouchMove() {
         hasMoved = true;
     }
     function onTouchEnd(e) {
-        document.removeEventListener('touchmove', onTouchMove);
-        document.removeEventListener('touchend', onTouchEnd);
+        document.removeEventListener("touchmove", onTouchMove);
+        document.removeEventListener("touchend", onTouchEnd);
         // If it wasn't a swipe, open/close image
         if (!hasMoved) {
             if (isOpen) {
                 isOpen = false;
                 reset();
             }
-            else if (e.target.tagName === 'IMG') {
+            else if (e.target.tagName === "IMG") {
                 openImage(e.target);
             }
         }
@@ -64,8 +64,8 @@
         var areas = {
             top: aspectRatio * bound.top * bound.top,
             bottom: aspectRatio * (H - bound.bottom) * (H - bound.bottom),
-            left: bound.left / aspectRatio * bound.left,
-            right: (W - bound.right) / aspectRatio * (W - bound.right)
+            left: (bound.left / aspectRatio) * bound.left,
+            right: ((W - bound.right) / aspectRatio) * (W - bound.right),
         };
         var maxArea = 0;
         var maxSide;
@@ -80,40 +80,40 @@
     function openImage(target) {
         el = target;
         img.src = el.src;
-        img.style.opacity = '1';
-        underlay.style.opacity = '1';
+        img.style.opacity = "1";
+        underlay.style.opacity = "1";
         if (isTouch) {
-            img.style.transform = 'translate(-50%, -50%) scale(1)';
+            img.style.transform = "translate(-50%, -50%) scale(1)";
         }
         else {
-            img.style.top = '0px';
-            img.style.transform = 'translate(0%, 0%) scale(1)';
+            img.style.top = "0px";
+            img.style.transform = "translate(0%, 0%) scale(1)";
             bound = el.getBoundingClientRect();
             var side = getSideWithMaxArea();
-            if (side === 'top') {
+            if (side === "top") {
                 img.style.maxHeight = bound.top + "px";
-                img.style.maxWidth = 'none';
-                img.style.left = '0';
-                img.style.top = '0';
+                img.style.maxWidth = "none";
+                img.style.left = "0";
+                img.style.top = "0";
             }
-            else if (side === 'bottom') {
+            else if (side === "bottom") {
                 img.style.maxHeight = H - bound.bottom + "px";
-                img.style.maxWidth = 'none';
-                img.style.left = '0';
+                img.style.maxWidth = "none";
+                img.style.left = "0";
                 img.style.top = "" + bound.bottompx;
             }
-            else if (side === 'right') {
+            else if (side === "right") {
                 img.style.maxWidth = W - bound.right + "px";
-                img.style.maxHeight = 'none';
+                img.style.maxHeight = "none";
                 img.style.left = bound.right + "px";
             }
             else {
                 img.style.maxWidth = bound.left + "px";
-                img.style.maxHeight = 'none';
-                img.style.left = '0';
+                img.style.maxHeight = "none";
+                img.style.left = "0";
             }
-            document.addEventListener('mousemove', onMove);
-            document.addEventListener('mouseout', onMouseOut);
+            document.addEventListener("mousemove", onMove);
+            document.addEventListener("mouseout", onMouseOut);
         }
         isOpen = true;
     }
@@ -121,10 +121,10 @@
         el = e.target;
         if (isTouch) {
             hasMoved = false;
-            document.addEventListener('touchmove', onTouchMove);
-            document.addEventListener('touchend', onTouchEnd);
+            document.addEventListener("touchmove", onTouchMove);
+            document.addEventListener("touchend", onTouchEnd);
         }
-        else if (el.tagName === 'IMG') {
+        else if (el.tagName === "IMG") {
             openImage(el);
         }
     }
@@ -164,36 +164,42 @@
         var top;
         if (img.height > H) {
             top = bound.top - mouse.y;
-            img.style.top = "calc(" + 1 * top / bound.height * (img.height - H) + "px)";
+            img.style.top = "calc(" + ((1 * top) / bound.height) * (img.height - H) + "px)";
         }
         if (isOutside &&
-            (mouse.x > bound.right || mouse.x < bound.left || mouse.y > bound.bottom || mouse.y < bound.top)) {
+            (mouse.x > bound.right ||
+                mouse.x < bound.left ||
+                mouse.y > bound.bottom ||
+                mouse.y < bound.top)) {
             reset();
         }
     }
     function reset() {
-        img.style.opacity = underlay.style.opacity = '0';
+        img.style.opacity = underlay.style.opacity = "0";
         el = null;
         bound = null;
         isOutside = false;
-        document.removeEventListener('mousemove', onMove);
-        document.removeEventListener('mouseout', onMouseOut);
+        document.removeEventListener("mousemove", onMove);
+        document.removeEventListener("mouseout", onMouseOut);
         if (isTouch) {
-            img.style.transform = 'translate(-50%, -50%) scale(1)';
+            img.style.transform = "translate(-50%, -50%) scale(1)";
         }
         else {
-            img.style.transform = 'translate(0%, 0%) scale(0.9)';
+            img.style.transform = "translate(0%, 0%) scale(0.9)";
         }
     }
     function onMouseOut(e) {
         var mouse = getMouse(e);
-        if (!(mouse.x > bound.right || mouse.x < bound.left || mouse.y > bound.bottom || mouse.y < bound.top)) {
+        if (!(mouse.x > bound.right ||
+            mouse.x < bound.left ||
+            mouse.y > bound.bottom ||
+            mouse.y < bound.top)) {
             isOutside = true;
             return;
         }
         reset();
     }
-    window.addEventListener('resize', function () {
+    window.addEventListener("resize", function () {
         W = window.innerWidth;
         H = window.innerHeight;
     });
