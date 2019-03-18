@@ -35,7 +35,7 @@ function getFormData(form) {
         var element = elements[name];
         // singular form elements just have one value
         formData[name] = element.value;
-        // when our element has multiple items, get their values
+        // when element has multiple items, get their values
         if (element.length) {
             var data = [];
             for (var i = 0; i < element.length; i++) {
@@ -62,15 +62,16 @@ function handleFormSubmit(event) {
         // if form is filled, form will not be submitted
         return false;
     }
+    var invalidEmail = form.querySelector(".email-form__input--invalid");
     if (data.email && !validEmail(data.email)) {
         // if email is not valid show error
-        var invalidEmail = form.querySelector(".email-invalid");
         if (invalidEmail) {
             invalidEmail.style.display = "block";
             return false;
         }
     }
     else {
+        invalidEmail.style.display = "none";
         disableAllButtons(form);
         var url = form.action;
         var xhr_1 = new XMLHttpRequest();
@@ -80,11 +81,13 @@ function handleFormSubmit(event) {
         xhr_1.onreadystatechange = function () {
             console.log(xhr_1.status, xhr_1.statusText);
             console.log(xhr_1.responseText);
-            var formElements = form.querySelector(".form-elements");
+            var formElements = form.querySelectorAll(".email-form__input");
             if (formElements) {
-                formElements.style.display = "none"; // hide form
+                formElements.forEach(function (element) {
+                    element.value = "";
+                });
             }
-            var thankYouMessage = form.querySelector(".thankyou_message");
+            var thankYouMessage = form.lastChild;
             if (thankYouMessage) {
                 thankYouMessage.style.display = "block";
             }
@@ -101,7 +104,7 @@ function handleFormSubmit(event) {
 }
 function loaded() {
     console.log("Contact form submission handler loaded successfully.");
-    // bind to the submit event of our form
+    // bind to the submit event of the form
     var forms = document.querySelectorAll(".email-form");
     for (var i = 0; i < forms.length; i++) {
         forms[i].addEventListener("submit", handleFormSubmit, false);

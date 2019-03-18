@@ -43,7 +43,7 @@ function getFormData(form: HTMLFormElement) {
     // singular form elements just have one value
     formData[name] = element.value;
 
-    // when our element has multiple items, get their values
+    // when element has multiple items, get their values
     if (element.length) {
       const data = [];
       for (let i = 0; i < element.length; i++) {
@@ -74,29 +74,32 @@ function handleFormSubmit(event: any): boolean | void {
     // if form is filled, form will not be submitted
     return false;
   }
-
+  const invalidEmail = form.querySelector(".email-form__input--invalid");
   if (data.email && !validEmail(data.email)) {
     // if email is not valid show error
-    const invalidEmail = form.querySelector(".email-invalid");
     if (invalidEmail) {
       invalidEmail.style.display = "block";
       return false;
     }
+
   } else {
+    invalidEmail.style.display = "none"
     disableAllButtons(form);
     const url = form.action;
     const xhr = new XMLHttpRequest();
     xhr.open("POST", url);
     // xhr.withCredentials = true;
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
       console.log(xhr.status, xhr.statusText);
       console.log(xhr.responseText);
-      const formElements = form.querySelector(".form-elements");
+      const formElements = form.querySelectorAll(".email-form__input");
       if (formElements) {
-        formElements.style.display = "none"; // hide form
+        formElements.forEach((element: HTMLInputElement) => {
+          element.value = "";
+        })
       }
-      const thankYouMessage = form.querySelector(".thankyou_message");
+      const thankYouMessage = form.lastChild;
       if (thankYouMessage) {
         thankYouMessage.style.display = "block";
       }
@@ -114,7 +117,7 @@ function handleFormSubmit(event: any): boolean | void {
 
 function loaded() {
   console.log("Contact form submission handler loaded successfully.");
-  // bind to the submit event of our form
+  // bind to the submit event of the form
   const forms = document.querySelectorAll(".email-form");
   for (let i = 0; i < forms.length; i++) {
     forms[i].addEventListener("submit", handleFormSubmit, false);
