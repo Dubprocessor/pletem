@@ -40,7 +40,7 @@ export default function Prices() {
                 <legend>Вид косичек</legend>
                 <CheckBox label="Классисечские афрокосички" id="kind-1" name="kind" value="1500" />
                 <CheckBox
-                  label="Французские косички - брейды"
+                  label="Ганские косички - брейды"
                   id="kind-2"
                   name="kind"
                   value="3000"

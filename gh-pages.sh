@@ -8,11 +8,11 @@ timestamp() {
 
 git checkout gh-pages
 git checkout $BRANCH ./public
-git commit -am "stage"
+git commit --allow-empty -am "stage"
 cp -r ./public/* ./
 rm -rf ./public
 git add .
-git commit --amend --allow-empty -m "$(timestamp) - $MESSAGE"
+git commit --amend -m "$(timestamp) - $MESSAGE"
 git push
 git checkout $BRANCH
 git merge -s ours master -m "$MESSAGE"
