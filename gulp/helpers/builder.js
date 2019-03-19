@@ -34,6 +34,7 @@ export function builder (file) {
         decache(`${resolve(file)}`);
         console.info(`[Starting generate HTML for]: ${file}`);
         const dirPath = makeDir(file);
+        
         const pageMarkup = require(resolve(file)).default();
         const docMarkup = `<!DOCTYPE html>${pageMarkup}`;
 

@@ -6,9 +6,10 @@ export function makeDir(file) {
 	const { ext, dir } = parsedFilePath;
 	const dirName = dir.split('/').pop();
 	let dirPath;
+	
 	switch (ext) {
 		case '.tsx':
-			if (file === 'src/tsx/index.tsx') {
+			if (file === './src/tsx/index.tsx') {
 				dirPath = 'src/compiled/tsx';
 			} else if (file.includes('pages')) {
 				dirPath = `./src/compiled/tsx/pages/${dirName}`;
@@ -17,7 +18,7 @@ export function makeDir(file) {
 			}
 			break;
 		case '.js':
-			if (file === 'src/compiled/tsx/index.js') {
+			if (file === './src/compiled/tsx/index.js') {
 				dirPath = './public';
 			} else {
                 dirPath = `./public/pages/${dirName}`;
