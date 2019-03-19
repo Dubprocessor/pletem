@@ -11,16 +11,16 @@ export default function Faq() {
         <input
           id={`ac-${index + 1}`}
           className="accordion__input"
-          name="accordion-1"
+          name="accordion"
           type="radio"
           defaultChecked={index === 0 ? true : false}
         />
         <label htmlFor={`ac-${index + 1}`} className="accordion__label">
           {element[0]}
         </label>
-        <article className="accordion__article accordion__article--medium">
+        <div className="accordion__article">
           <p>{element[1]}</p>
-        </article>
+        </div>
       </div>
     );
   });

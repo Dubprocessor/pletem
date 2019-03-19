@@ -8,7 +8,7 @@ export default function Contacts() {
   return renderToStaticMarkup(
     <Layout mod="contacts">
       <section>
-        <PageH1 mod="contacts"/>
+        <PageH1 mod="contacts" />
         <div className="contacts">
           <div id="map" className="contacts__map">
             map will be here!

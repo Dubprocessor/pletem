@@ -33,3 +33,13 @@ export function PageH1(props: Props) {
       return null;
   }
 }
+
+export const consumers = [
+  "src/compiled/tsx/index.js",
+  "src/compiled/tsx/pages/about/index.js",
+  "src/compiled/tsx/pages/contacts/index.js",
+  "src/compiled/tsx/pages/faq/index.js",
+  "src/compiled/tsx/pages/gallery/index.js",
+  "src/compiled/tsx/pages/prices/index.js",
+  "src/compiled/tsx/pages/testimonials/index.js",
+];

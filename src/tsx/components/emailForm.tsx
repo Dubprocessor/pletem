@@ -49,7 +49,10 @@ export function EmailForm() {
       </fieldset>
 
       <div className="email-form__thankyou-message">
-        <p>Спасибо! Ваше сообщение отправлено.<br/> Мы ответим Вам в ближайшее время!</p>
+        <p>
+          Спасибо! Ваше сообщение отправлено.
+          <br /> Мы ответим Вам в ближайшее время!
+        </p>
       </div>
     </form>
   );

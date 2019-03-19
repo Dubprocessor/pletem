@@ -81,23 +81,22 @@ function handleFormSubmit(event: any): boolean | void {
       invalidEmail.style.display = "block";
       return false;
     }
-
   } else {
-    invalidEmail.style.display = "none"
+    invalidEmail.style.display = "none";
     disableAllButtons(form);
     const url = form.action;
     const xhr = new XMLHttpRequest();
     xhr.open("POST", url);
     // xhr.withCredentials = true;
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
       console.log(xhr.status, xhr.statusText);
       console.log(xhr.responseText);
       const formElements = form.querySelectorAll(".email-form__input");
       if (formElements) {
         formElements.forEach((element: HTMLInputElement) => {
           element.value = "";
-        })
+        });
       }
       const thankYouMessage = form.lastChild;
       if (thankYouMessage) {

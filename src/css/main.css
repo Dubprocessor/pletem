@@ -30,8 +30,6 @@
 @import "modules/_card-title.pcss";
 /** @define accordion */
 @import "modules/_accordion.pcss";
-/** @define tab */
-@import "modules/_tab.pcss";
 /** @define contacts */
 @import "modules/_contacts.pcss";
 /** @define email-form */

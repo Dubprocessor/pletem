@@ -15,16 +15,17 @@ task('watch-ts', function() {
 });
 
 task('watch-compiled-js', function() {
-	watch([ './src/compiled/tsx/**/*.js' ]).on('change', function(file) {
-		if (file.includes('components')) {
+	watch([ './src/compiled/tsx/**/*.js', './src/compiled/ts/siteData.js' ]).on('change', function(file) {
+		if (file.includes('components') || file.includes('siteData')) {
 			console.log(`[Changed component]: ${file}`);
 			const consumers = require(resolve(file)).consumers;
+		    console.log(consumers)
 			consumers.forEach((consumer) => {
 				console.info(`[Starting generate HTML for]: ${consumer}`);
 				const dirPath = makeDir(consumer);
 				
 				decache(`${resolve(file)}`);
-				decache(`${resolve(consumer)}`);
+			    decache(`${resolve(consumer)}`);
 
 				const pageMarkup = require(resolve(consumer)).default();
 

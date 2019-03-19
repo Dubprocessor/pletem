@@ -34,3 +34,4 @@ export function ContactCard(props: Props) {
   }
   return null;
 }
+export const consumers = ["src/compiled/tsx/index.js"];
