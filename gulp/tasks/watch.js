@@ -5,6 +5,7 @@ import decache from "decache";
 import { createProject } from 'gulp-typescript';
 import { writeFile, stat } from 'fs';
 import { makeDir } from '../helpers/makeDir';
+import { builder } from '../helpers/builder';
 import { formatFileSize } from '../helpers/formatFileSize';
 
 task('watch-css', function() {
@@ -15,49 +16,51 @@ task('watch-ts', function() {
 });
 
 task('watch-compiled-js', function() {
-	watch([ './src/compiled/tsx/**/*.js', './src/compiled/ts/siteData.js' ]).on('change', function(file) {
-		if (file.includes('components') || file.includes('siteData')) {
-			console.log(`[Changed component]: ${file}`);
-			const consumers = require(resolve(file)).consumers;
-		    console.log(consumers)
-			consumers.forEach((consumer) => {
-				console.info(`[Starting generate HTML for]: ${consumer}`);
-				const dirPath = makeDir(consumer);
+	watch([ './src/compiled/tsx/**/*.js', './src/compiled/ts/siteData.js' ]).on('change', (file) => builder(file)
+// 	 function(file) {
+// 		if (file.includes('components') || file.includes('siteData')) {
+// 			console.log(`[Changed component]: ${file}`);
+// 			const consumers = require(resolve(file)).consumers;
+// 		    console.log(consumers)
+// 			consumers.forEach((consumer) => {
+// 				console.info(`[Starting generate HTML for]: ${consumer}`);
+// 				const dirPath = makeDir(consumer);
 				
-				decache(`${resolve(file)}`);
-			    decache(`${resolve(consumer)}`);
+// 				decache(`${resolve(file)}`);
+// 			    decache(`${resolve(consumer)}`);
 
-				const pageMarkup = require(resolve(consumer)).default();
+// 				const pageMarkup = require(resolve(consumer)).default();
 
-				const docMarkup = `<!DOCTYPE html>${pageMarkup}`;
+// 				const docMarkup = `<!DOCTYPE html>${pageMarkup}`;
 
-				writeFile(`${dirPath}/index.html`, docMarkup, () =>
-					stat(`${dirPath}/index.html`, (error, stats) => {
-						if (error) throw error;
-						if (stats.isFile()) {
-							console.info('Html file successfully generated!', `size : ${formatFileSize(stats.size)}`);
-						}
-					})
-				);
-			});
-		} else {
-			decache(`${resolve(file)}`);
-			console.info(`[Starting generate HTML for]: ${file}`);
-			const dirPath = makeDir(file);
-			const pageMarkup = require(resolve(file)).default();
-			const docMarkup = `<!DOCTYPE html>${pageMarkup}`;
+// 				writeFile(`${dirPath}/index.html`, docMarkup, () =>
+// 					stat(`${dirPath}/index.html`, (error, stats) => {
+// 						if (error) throw error;
+// 						if (stats.isFile()) {
+// 							console.info('Html file successfully generated!', `size : ${formatFileSize(stats.size)}`);
+// 						}
+// 					})
+// 				);
+// 			});
+// 		} else {
+// 			decache(`${resolve(file)}`);
+// 			console.info(`[Starting generate HTML for]: ${file}`);
+// 			const dirPath = makeDir(file);
+// 			const pageMarkup = require(resolve(file)).default();
+// 			const docMarkup = `<!DOCTYPE html>${pageMarkup}`;
 
-			writeFile(`${dirPath}/index.html`, docMarkup, () =>
-				stat(`${dirPath}/index.html`, (error, stats) => {
-					if (error) throw error;
-					if (stats.isFile()) {
-						console.info('Html file successfully generated!', `size : ${formatFileSize(stats.size)}`);
-					}
-				})
-			);
-		}
-	});
-});
+// 			writeFile(`${dirPath}/index.html`, docMarkup, () =>
+// 				stat(`${dirPath}/index.html`, (error, stats) => {
+// 					if (error) throw error;
+// 					if (stats.isFile()) {
+// 						console.info('Html file successfully generated!', `size : ${formatFileSize(stats.size)}`);
+// 					}
+// 				})
+// 			);
+// 		}
+// 	});
+// }
+)});
 task('watch-tsx', function() {
 	watch([ './src/tsx/**/*.tsx' ], { awaitWriteFinish: true }).on('change', function(file) {
 		const tsxProject = createProject('tsconfig.json');

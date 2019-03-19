@@ -35,6 +35,7 @@
 		"tsx": "gulp tsx",
 		"concat": "gulp concat",
 		"clean": "gulp clean",
+		"build": "gulp build",
 		"lint": "tslint --project tsconfig.json --fix 'src/**/*.{ts,tsx}' && prettier --write 'src/**/*.{ts,tsx}'",
 		"deploy": "bash ./gh-pages.sh"
 	},
