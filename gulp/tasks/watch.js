@@ -8,64 +8,26 @@ import { makeDir } from '../helpers/makeDir';
 import { builder } from '../helpers/builder';
 import { formatFileSize } from '../helpers/formatFileSize';
 
-task('watch-css', function() {
-	watch([ './src/css/**/*.css', './src/css/**/*.pcss' ], series('postcss', 'minify-css'));
+task('watch-css', function () {
+	watch(['./src/css/**/*.css', './src/css/**/*.pcss'], series('postcss', 'minify-css'));
 });
-task('watch-ts', function() {
-	watch([ './src/ts/**/*.ts' ], series('ts', 'concat'));
+task('watch-ts', function () {
+	watch(['./src/ts/**/*.ts'], series('ts', 'concat'));
 });
 
-task('watch-compiled-js', function() {
-	watch([ './src/compiled/tsx/**/*.js', './src/compiled/ts/siteData.js' ]).on('change', (file) => builder(file)
-// 	 function(file) {
-// 		if (file.includes('components') || file.includes('siteData')) {
-// 			console.log(`[Changed component]: ${file}`);
-// 			const consumers = require(resolve(file)).consumers;
-// 		    console.log(consumers)
-// 			consumers.forEach((consumer) => {
-// 				console.info(`[Starting generate HTML for]: ${consumer}`);
-// 				const dirPath = makeDir(consumer);
-				
-// 				decache(`${resolve(file)}`);
-// 			    decache(`${resolve(consumer)}`);
-
-// 				const pageMarkup = require(resolve(consumer)).default();
-
-// 				const docMarkup = `<!DOCTYPE html>${pageMarkup}`;
-
-// 				writeFile(`${dirPath}/index.html`, docMarkup, () =>
-// 					stat(`${dirPath}/index.html`, (error, stats) => {
-// 						if (error) throw error;
-// 						if (stats.isFile()) {
-// 							console.info('Html file successfully generated!', `size : ${formatFileSize(stats.size)}`);
-// 						}
-// 					})
-// 				);
-// 			});
-// 		} else {
-// 			decache(`${resolve(file)}`);
-// 			console.info(`[Starting generate HTML for]: ${file}`);
-// 			const dirPath = makeDir(file);
-// 			const pageMarkup = require(resolve(file)).default();
-// 			const docMarkup = `<!DOCTYPE html>${pageMarkup}`;
-
-// 			writeFile(`${dirPath}/index.html`, docMarkup, () =>
-// 				stat(`${dirPath}/index.html`, (error, stats) => {
-// 					if (error) throw error;
-// 					if (stats.isFile()) {
-// 						console.info('Html file successfully generated!', `size : ${formatFileSize(stats.size)}`);
-// 					}
-// 				})
-// 			);
-// 		}
-// 	});
-// }
-)});
-task('watch-tsx', function() {
-	watch([ './src/tsx/**/*.tsx' ], { awaitWriteFinish: true }).on('change', function(file) {
+task('watch-compiled-js', function () {
+	watch(['./src/compiled/tsx/**/*.js', './src/compiled/ts/siteData.js'])
+		.on('change', (file) => builder(file))
+});
+task('watch-tsx', function () {
+	watch(['./src/tsx/**/*.tsx'], { awaitWriteFinish: true }).on('change', function (file) {
 		const tsxProject = createProject('tsconfig.json');
 		console.info(`[Transpiling file]: ${file}`);
 		let dirPath = makeDir(file);
-		return src(file).pipe(tsxProject()).js.pipe(dest(`${dirPath}`));
+		console.log(dirPath)
+		return src(file).pipe(tsxProject()).on('error', function (err) {
+			console.error('[ERROR]: ', err.toString());
+			this.emit('end');
+		}).js.pipe(dest(`${dirPath}`));
 	});
 });

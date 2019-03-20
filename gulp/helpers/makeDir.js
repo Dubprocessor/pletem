@@ -9,7 +9,8 @@ export function makeDir(file) {
 	
 	switch (ext) {
 		case '.tsx':
-			if (file === './src/tsx/index.tsx') {
+		console.log('FILE ', file)
+			if (file.includes('src/tsx/index.tsx')) {
 				dirPath = 'src/compiled/tsx';
 			} else if (file.includes('pages')) {
 				dirPath = `./src/compiled/tsx/pages/${dirName}`;
@@ -18,7 +19,8 @@ export function makeDir(file) {
 			}
 			break;
 		case '.js':
-			if (file === './src/compiled/tsx/index.js') {
+		console.log('FILE ', file)
+			if (file.includes('src/compiled/tsx/index.js')) {
 				dirPath = './public';
 			} else {
                 dirPath = `./public/pages/${dirName}`;

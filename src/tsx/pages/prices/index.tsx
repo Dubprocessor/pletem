@@ -12,7 +12,6 @@ decache("../../../ts/siteData");
 export default function Prices() {
   const tabs = Object.entries(siteData.prices.tabs).map((element, index) => {
     return (
-
       <div key={index}>
         <input
           id={`ac-${index + 1}`}

@@ -11,6 +11,7 @@ task('bs', function() {
 			'./public/img/**/*.svg',
 			'./public/dist/styles/**/*.css',
 			'./public/dist/scripts/**/*.js'
-		]
+		],
+		watchEvents : [ 'change', 'add', 'unlink', 'addDir', 'unlinkDir' ]
 	});
 });
