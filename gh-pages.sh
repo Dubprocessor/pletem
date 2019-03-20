@@ -5,7 +5,7 @@ MESSAGE=$2
 timestamp() {
   date +"%Y-%m-%d [%H:%M:%S]"
 }
-
+git commit -m "$MESSAGE"
 git checkout gh-pages
 git checkout $BRANCH ./public
 git commit --allow-empty -am "stage"

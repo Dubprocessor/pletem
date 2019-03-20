@@ -1,5 +1,5 @@
 import { parse } from 'path';
-import { mkdirSync, stat } from 'fs';
+import { mkdirSync } from 'fs';
 
 export function makeDir(file) {
 	const parsedFilePath = parse(file);
@@ -9,7 +9,6 @@ export function makeDir(file) {
 	
 	switch (ext) {
 		case '.tsx':
-		console.log('FILE ', file)
 			if (file.includes('src/tsx/index.tsx')) {
 				dirPath = 'src/compiled/tsx';
 			} else if (file.includes('pages')) {
@@ -19,7 +18,6 @@ export function makeDir(file) {
 			}
 			break;
 		case '.js':
-		console.log('FILE ', file)
 			if (file.includes('src/compiled/tsx/index.js')) {
 				dirPath = './public';
 			} else {
