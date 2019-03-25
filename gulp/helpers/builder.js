@@ -9,7 +9,7 @@ export function builder (file) {
     if (file.includes('components') || file.includes('siteData')) {
         console.log(`[Changed component]: ${file}`);
         const consumers = require(resolve(file)).consumers;
-        console.log(`Consumers: ${consumers}`)
+        
         consumers.forEach((consumer) => {
             console.info(`[Starting generate HTML for]: ${consumer}`);
             const dirPath = makeDir(consumer);

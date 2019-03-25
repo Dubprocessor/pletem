@@ -83,7 +83,7 @@ export function Layout(props: Props) {
         <footer className="footer">
           <div className="footer__content">
             <small>
-              2017 &copy; |<a href="#">Dub Processor</a>
+              2019 &copy; |<a href="#">Dub Processor</a>
             </small>
           </div>
         </footer>
