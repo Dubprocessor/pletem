@@ -427,3 +427,50 @@ function displayMenu() {
     }
 }
 var l = 1;
+
+"use strict";
+function displayPrice(event) {
+    event.preventDefault();
+    var price = 0;
+    var priceMap = new Map();
+    priceMap.set("kind-1", new Map([["length-1", "4500"], ["length-2", "6500"], ["length-3", "7000"], ["length-4", "7000"]]));
+    priceMap.set("kind-2", new Map([["length-1", "3500"], ["length-2", "3500"], ["length-3", "3500"], ["length-4", "3500"]]));
+    priceMap.set("kind-3", new Map([["length-1", "6500"], ["length-2", "7000"], ["length-3", "7000"], ["length-4", "7500"]]));
+    console.log(priceMap);
+    var priceDOM = document.getElementById("calc__display");
+    var checkedLength = document.querySelector('input[name="length"]:checked');
+    var checkedKind = document.querySelector('input[name="kind"]:checked');
+    if (checkedLength && !checkedKind) {
+        priceDOM.innerText = "Пожалуйста, выберите вид косичек!";
+    }
+    if (checkedKind && !checkedLength) {
+        priceDOM.innerText = "Пожалуйста, выберите длину волос!";
+    }
+    if (!checkedKind && !checkedLength) {
+        priceDOM.innerText = "Пожалуйста, выберите длину волос и вид косичек!";
+    }
+    if (checkedLength && checkedKind) {
+        console.log(checkedKind.id);
+        switch (checkedKind.id) {
+            case "kind-1":
+                var classic = priceMap.get("kind-1");
+                price = classic.get(checkedLength.id);
+                console.log(price);
+                break;
+            case "kind-2":
+                var ghana = priceMap.get("kind-2");
+                price = ghana.get(checkedLength.id);
+                console.log(price);
+                break;
+            case "kind-3":
+                var zizi = priceMap.get("kind-3");
+                price = zizi.get(checkedLength.id);
+                console.log(price);
+                break;
+            default:
+        }
+        priceDOM.innerText = price + " \u0440\u0443\u0431.*\n        *\u0426\u0435\u043D\u0430 \u043C\u043E\u0436\u0435\u0442 \u043D\u0435\u0437\u043D\u0430\u0447\u0438\u0442\u0435\u043B\u044C\u043D\u043E \u043E\u0442\u043B\u0438\u0447\u0430\u0442\u044C\u0441\u044F \u043F\u0440\u0438 \u0440\u0435\u0430\u043B\u044C\u043D\u043E\u043C \u043E\u0431\u0440\u0430\u0449\u0435\u043D\u0438\u0438.";
+    }
+    return;
+}
+document.querySelector('.calc__submit').addEventListener("click", displayPrice);

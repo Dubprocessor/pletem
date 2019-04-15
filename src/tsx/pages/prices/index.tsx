@@ -52,6 +52,7 @@ export default function Prices() {
               </fieldset>
               <input className="calc__submit" type="submit" value="Показать стоимость" />
             </form>
+            <p id="calc__display" className="calc__display"></p>
           </div>
         </div>
       </section>
