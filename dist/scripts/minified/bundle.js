@@ -436,7 +436,6 @@ function displayPrice(event) {
     priceMap.set("kind-1", new Map([["length-1", "4500"], ["length-2", "6500"], ["length-3", "7000"], ["length-4", "7000"]]));
     priceMap.set("kind-2", new Map([["length-1", "3500"], ["length-2", "3500"], ["length-3", "3500"], ["length-4", "3500"]]));
     priceMap.set("kind-3", new Map([["length-1", "6500"], ["length-2", "7000"], ["length-3", "7000"], ["length-4", "7500"]]));
-    console.log(priceMap);
     var priceDOM = document.getElementById("calc__display");
     var checkedLength = document.querySelector('input[name="length"]:checked');
     var checkedKind = document.querySelector('input[name="kind"]:checked');
@@ -450,22 +449,18 @@ function displayPrice(event) {
         priceDOM.innerText = "Пожалуйста, выберите длину волос и вид косичек!";
     }
     if (checkedLength && checkedKind) {
-        console.log(checkedKind.id);
         switch (checkedKind.id) {
             case "kind-1":
                 var classic = priceMap.get("kind-1");
                 price = classic.get(checkedLength.id);
-                console.log(price);
                 break;
             case "kind-2":
                 var ghana = priceMap.get("kind-2");
                 price = ghana.get(checkedLength.id);
-                console.log(price);
                 break;
             case "kind-3":
                 var zizi = priceMap.get("kind-3");
                 price = zizi.get(checkedLength.id);
-                console.log(price);
                 break;
             default:
         }
