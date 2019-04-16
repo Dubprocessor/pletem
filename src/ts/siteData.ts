@@ -61,12 +61,8 @@ export const siteData: SiteData = {
   },
   faq: {
     accordion: {
-      ["Сколько времени уходит на заплетение?"]: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt pellentesque lorem, id suscipit dolor rutrum
-            id. Morbi facilisis porta volutpat. Fusce adipiscing, mauris quis congue tincidunt, sapien purus suscipit odio,
-			quis dictum odio tortor in sem. Ut sit amet libero nec orci mattis fringilla.`,
-      ["Как долго держится прическа?"]: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt pellentesque lorem, id suscipit dolor rutrum
-            id. Morbi facilisis porta volutpat. Fusce adipiscing, mauris quis congue tincidunt, sapien purus suscipit odio,
-			quis dictum odio tortor in sem. Ut sit amet libero nec orci mattis fringilla.`,
+      ["Сколько времени уходит на заплетение?"]: `Все зависит от количества, вида, длины косичек и сложности композиции. В среднем это занимает от 4 до 8 часов. Опытный мастер может справиться и быстрее.`,
+      ["Как долго держится прическа?"]: `В зависимости  от Вашего типа волос и того, насколько хорошо Вы ухаживаете за своими волосами, косички можно носить до двух месяцев. Однако, необходимо учитывать, что тонкие волосы могут не справиться с длительным натяжением, и если Вы не уверены , то Вы не ошибетесь, если будете следовать правилу двух месяцев. - Никогда не носите косички больше этого срока!  Второй месяц -  окончательная дата истечения срока годности, даже если Вы регулярно поддерживаете внешний вид косичек с помощью подплетения выбивающихся волос и ежедневного увлажнения. Я обычно советую расплетать косички по истечении одного месяца. Перед повторным заплетением обязательно дайте волосам отдохнуть не менее двух недель!`,
       ["Как ухаживать за прической?"]: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt pellentesque lorem, id suscipit dolor rutrum
             id. Morbi facilisis porta volutpat. Fusce adipiscing, mauris quis congue tincidunt, sapien purus suscipit odio,
 			quis dictum odio tortor in sem. Ut sit amet libero nec orci mattis fringilla.`,
