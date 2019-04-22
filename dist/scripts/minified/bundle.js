@@ -1,4 +1,31 @@
 "use strict";
+document.addEventListener("click", function (event) {
+    var id = event.target.id;
+    function setSpb() {
+        sessionStorage.setItem("spbRef", JSON.stringify(true));
+        sessionStorage.setItem("moscowRef", JSON.stringify(false));
+    }
+    function setMoscow() {
+        sessionStorage.setItem("moscowRef", JSON.stringify(true));
+        sessionStorage.setItem("spbRef", JSON.stringify(false));
+    }
+    if (id === "spbRef" || id === "spbRef1") {
+        setSpb();
+    }
+    if (id === "spbRef1") {
+        event.preventDefault();
+        initMap();
+    }
+    if (id === "moscowRef" || id === "moscowRef1") {
+        setMoscow();
+    }
+    if (id === "moscowRef1") {
+        event.preventDefault();
+        initMap();
+    }
+});
+
+"use strict";
 function validEmail(email) {
     var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
     return re.test(email);
@@ -327,11 +354,20 @@ function disableAllButtons(form) {
 
 "use strict";
 function initMap() {
+    var moscowRef = sessionStorage.getItem("moscowRef");
+    var pos = { lat: 59.939421, lng: 30.266996 }; // default position - SPB
+    var infoWindowContent = "<p style=\"color: black;\">\u0426\u0435\u043D\u0442\u0440 \u0410\u0444\u0440\u043E\u043F\u043B\u0435\u0442\u0435\u043D\u0438\u044F<br/>\n  <b>\u0421\u0410\u041D\u041A\u0422 - \u041F\u0415\u0422\u0415\u0420\u0411\u0423\u0420\u0413</b><br/>\n  16 - \u044F \u043B\u0438\u043D\u0438\u044F \u0412.\u041E., \u0434. 39 <br/>\n  +7 (981) 248 - 55 - 05</p>";
+    if (moscowRef && JSON.parse(moscowRef)) {
+        pos.lat = 55.787257;
+        pos.lng = 37.632220;
+        infoWindowContent = "<p style=\"color: black\">\u0426\u0435\u043D\u0442\u0440 \u0410\u0444\u0440\u043E\u043F\u043B\u0435\u0442\u0435\u043D\u0438\u044F<br/>\n    <b>\u041C\u041E\u0421\u041A\u0412\u0410</b><br/>\n    \u0443\u043B. \u0413\u0438\u043B\u044F\u0440\u043E\u0432\u0441\u043A\u043E\u0433\u043E, \u0434. 57, \u0441\u0442\u0440. 1 <br/>\n    +7 (905) 288 - 47 - 47</p>";
+    }
     // Styles a map in night mode.
     console.log("initMap was called!");
     var map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 59.990335, lng: 30.255272 },
-        zoom: 15,
+        center: pos,
+        zoom: 18,
+        mapTypeControl: false,
         styles: [
             { elementType: "geometry", stylers: [{ color: "#150509" }] },
             { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
@@ -413,6 +449,14 @@ function initMap() {
             },
         ],
     });
+    var marker = new google.maps.Marker({ position: pos, map: map, icon: "../../assets/img/marker.png", title: "Центр Афроплетения" });
+    var infowindow = new google.maps.InfoWindow({
+        content: infoWindowContent
+    });
+    infowindow.open(map, marker);
+    google.maps.event.addListener(marker, 'click', function () {
+        infowindow.open(map, marker);
+    });
 }
 
 "use strict";
@@ -468,4 +512,6 @@ function displayPrice(event) {
     }
     return;
 }
-document.querySelector('.calc__submit').addEventListener("click", displayPrice);
+var calcSubmit = document.querySelector('.calc__submit');
+if (calcSubmit)
+    calcSubmit.addEventListener("click", displayPrice);
