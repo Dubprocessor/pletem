@@ -44,5 +44,6 @@ function displayPrice(event: Event) {
     return;
 }
 
-document.querySelector('.calc__submit')!.addEventListener("click", displayPrice);
+const calcSubmit = document.querySelector('.calc__submit')!;
+if(calcSubmit) calcSubmit.addEventListener("click", displayPrice);
 

@@ -8,7 +8,7 @@ export function ContactCard(props: Props) {
     return (
       <div className="contact-card">
         <h3 className="contact-card__title">
-          <a href="./pages/contacts/">Москва</a>
+          <a id="moscowRef" href="./pages/contacts/">Москва</a>
         </h3>
         <p className="contact-card__adress">
           ст. метро Проспект Мира
@@ -22,7 +22,7 @@ export function ContactCard(props: Props) {
     return (
       <div className="contact-card contact-card_text-right">
         <h3 className="contact-card__title">
-          <a href="./pages/contacts/">С - Петербург</a>
+          <a id="spbRef" href="./pages/contacts/">С - Петербург</a>
         </h3>
         <p className="contact-card__adress">
           ст. метро Василеостровская

@@ -9,6 +9,10 @@ export default function Contacts() {
     <Layout mod="contacts">
       <section>
         <PageH1 mod="contacts" />
+        <div className="mapRefsContainer">
+          <a id="moscowRef1" href="./">Москва</a>
+          <a id="spbRef1" href="./">С - Петербург</a>
+        </div>
         <div className="contacts">
           <div id="map" className="contacts__map">
             map will be here!

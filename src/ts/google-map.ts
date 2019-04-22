@@ -1,9 +1,28 @@
 function initMap() {
+  const moscowRef = sessionStorage.getItem("moscowRef");
+  const pos = { lat: 59.939421, lng: 30.266996}; // default position - SPB
+  let infoWindowContent = `<p style="color: black;">Центр Афроплетения<br/>
+  <b>САНКТ - ПЕТЕРБУРГ</b><br/>
+  16 - я линия В.О., д. 39 <br/>
+  +7 (981) 248 - 55 - 05</p>`;
+  
+  if(moscowRef && JSON.parse(moscowRef)) {
+    pos.lat = 55.787257;
+    pos.lng = 37.632220;
+    infoWindowContent = `<p style="color: black">Центр Афроплетения<br/>
+    <b>МОСКВА</b><br/>
+    ул. Гиляровского, д. 57, стр. 1 <br/>
+    +7 (905) 288 - 47 - 47</p>`
+  }  
+
   // Styles a map in night mode.
+  
   console.log("initMap was called!");
+  
   const map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 59.990335, lng: 30.255272 },
-    zoom: 15,
+    center: pos,
+    zoom: 18,
+    mapTypeControl: false,
     styles: [
       { elementType: "geometry", stylers: [{ color: "#150509" }] },
       { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
@@ -85,4 +104,13 @@ function initMap() {
       },
     ],
   });
+  const marker = new google.maps.Marker({position: pos, map: map,icon: "../../assets/img/marker.png", title: "Центр Афроплетения"});
+  
+  const infowindow = new google.maps.InfoWindow({
+    content: infoWindowContent
+  });
+  infowindow.open(map,marker);
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.open(map,marker);
+});
 }
